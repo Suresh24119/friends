@@ -4,7 +4,7 @@ const { createContactAPI } = require('../../lib/contact-api');
 
 // Mock nodemailer for integration tests
 jest.mock('nodemailer', () => ({
-  createTransporter: jest.fn(() => ({
+  createTransport: jest.fn(() => ({
     sendMail: jest.fn().mockResolvedValue({ 
       messageId: 'test-message-id',
       response: '250 Message accepted'

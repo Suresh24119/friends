@@ -25,9 +25,15 @@ const customJestConfig = {
     '!app/**/error.tsx',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(mongodb-memory-server|mongodb|bson|socket.io|socket.io-client|@mongodb-js)/)'
+    'node_modules/(?!(mongodb-memory-server|mongodb|bson|socket.io|socket.io-client|@mongodb-js|@noble|@paralleldrive|formidable|superagent|supertest)/)'
   ],
-  testTimeout: 30000
+  testTimeout: 30000,
+  // Add globals for Node.js environment
+  globals: {
+    'ts-jest': {
+      useESM: true
+    }
+  }
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

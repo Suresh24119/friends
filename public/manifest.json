@@ -1,0 +1,26 @@
+{
+  "name": "CampusCam - Student Video Chat",
+  "short_name": "CampusCam",
+  "description": "Random video chat between verified university students. No bots, no fake profiles. Real connections.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#D53840",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/logoherored.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logoherored.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import fc from 'fast-check';
 import ContactPage from './page';
@@ -682,11 +683,17 @@ describe('Contact Page', () => {
     });
 
     it('should show validation error for invalid email', async () => {
+      const user = userEvent.setup();
       render(<ContactPage />);
       
       const nameInput = screen.getByLabelText(/name/i);
       const emailInput = screen.getByLabelText(/email/i);
       const messageInput = screen.getByLabelText(/message/i);
+      
+      // Fill in the form with invalid email
+      await user.type(nameInput, 'Test Name');
+      await user.type(emailInput, 'invalid-email');
+      await user.type(messageInput, 'Test message');
       
       // Remove HTML5 validation to test our custom validation
       nameInput.removeAttribute('required');
@@ -694,12 +701,8 @@ describe('Contact Page', () => {
       messageInput.removeAttribute('required');
       emailInput.setAttribute('type', 'text'); // Change from email to text to bypass HTML5 validation
       
-      fireEvent.change(nameInput, { target: { value: 'Test Name' } });
-      fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-      fireEvent.change(messageInput, { target: { value: 'Test message' } });
-      
       const submitButton = screen.getByRole('button', { name: /send message/i });
-      fireEvent.click(submitButton);
+      await user.click(submitButton);
       
       await waitFor(() => {
         expect(screen.getByText(/Please provide a valid email address\./)).toBeInTheDocument();

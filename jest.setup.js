@@ -1,5 +1,18 @@
 require('@testing-library/jest-dom')
 
+// Add TextEncoder/TextDecoder polyfill for Node.js environment
+const { TextEncoder, TextDecoder } = require('util');
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
+// Add additional Node.js polyfills for browser APIs
+global.crypto = require('crypto');
+
+// Mock fetch if not available
+if (!global.fetch) {
+  global.fetch = jest.fn();
+}
+
 // Mock WebRTC APIs for testing
 global.RTCPeerConnection = jest.fn().mockImplementation(() => ({
   createOffer: jest.fn(),

@@ -260,15 +260,24 @@ export default function Home() {
       <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-[65] transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo Section - Left Side */}
+            {/* CampusCam Logo Section - Left Side */}
             <div className="flex items-center space-x-3 z-10">
               <Image
                 src={isScrolled ? "/logoherored.png" : "/logohero.png"}
-                alt="Logo"
-                width={120}
-                height={64}
-                className="h-12 md:h-16 w-auto transition-all duration-300"
+                alt="CampusCam Logo"
+                width={140}
+                height={70}
+                className="h-14 md:h-20 w-auto transition-all duration-300"
+                priority
               />
+              <div className={`transition-all duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+                <h1 className="text-xl md:text-2xl font-heading-bold tracking-wide">
+                  CampusCam
+                </h1>
+                <p className="text-xs md:text-sm opacity-80 font-body">
+                  Student Video Chat
+                </p>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -368,7 +377,24 @@ export default function Home() {
             </svg>
           </button>
           <div className='bg-white h-[100vh]'>
-            <div className="flex flex-col items-center justify-center h-full space-y-8 mt-15 bg-white">
+            {/* CampusCam Logo in Mobile Menu */}
+            <div className="flex flex-col items-center pt-16 pb-8">
+              <Image
+                src="/logoherored.png"
+                alt="CampusCam Logo"
+                width={120}
+                height={60}
+                className="h-16 w-auto mb-4"
+              />
+              <h1 className="text-2xl font-heading-bold text-[#D53840] mb-2">
+                CampusCam
+              </h1>
+              <p className="text-sm text-gray-600 font-body">
+                Student Video Chat Platform
+              </p>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center space-y-8 bg-white">
               <a
                 href="#home"
                 className="text-[#D53840] text-2xl font-body-medium hover:text-[#B8303A] transition-colors"
